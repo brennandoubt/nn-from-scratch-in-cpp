@@ -55,6 +55,7 @@ void Test1() {
     vector<double> layer_outputs;
     vector<Tuple<vector<double>, double> > zipped1 = nn1.zip<vector<double>, double>(weights, biases);
 
+    cout << "Zipped a matrix and doubles...\n" << nn1.zipped_matrix_to_string(zipped1) << endl;
 }
 
 
@@ -76,7 +77,7 @@ int main() {
 
     vector<Tuple<double, double> > zipped_vec = nn.zip<double, double>(vec1, vec2);
 
-    cout << nn.zipped_to_string<double, double>(zipped_vec) << endl;
+    cout << "Zipped doubles...\n" << nn.zipped_to_string<double, double>(zipped_vec) << endl;
 
     Test1();
 

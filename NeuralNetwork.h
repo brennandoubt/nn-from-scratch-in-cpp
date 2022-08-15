@@ -17,6 +17,8 @@ class NeuralNetwork {
 
         template <typename T, typename T2>
         string zipped_to_string(vector<Tuple<T, T2> >& zipped);
+
+        string zipped_matrix_to_string(vector<Tuple<vector<double>, double> >& zipped);
     
 };
 
