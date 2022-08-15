@@ -5,10 +5,10 @@
 
 #include "NeuralNetwork.h"
 
+template <typename T, typename T2>
+vector<Tuple<T, T2> > NeuralNetwork::zip(vector<T>& arr1, vector<T2>& arr2) {
 
-vector<vector<double> > NeuralNetwork::zip(vector<double>& arr1, vector<double>& arr2) {
-
-    vector<vector<double> > zipped_arr;
+    /* vector<vector<double> > zipped_arr;
     vector<double> empty_vec; // to expand zipped_arr
 
     size_t idx = 0;
@@ -21,11 +21,30 @@ vector<vector<double> > NeuralNetwork::zip(vector<double>& arr1, vector<double>&
         idx++;
     }
 
+    return zipped_arr; */
+
+    vector<Tuple<T, T2> > zipped_arr;
+
+    size_t idx = 0;
+    while (idx < arr1.size() && idx < arr2.size()) {
+        // make new tuple to hold i-th arr1 and arr2 values
+        Tuple<T, T2> tup;
+        tup.item1 = arr1[idx]; 
+        tup.item2 = arr2[idx];
+
+        cout << tup.item1 << tup.item2 << endl;
+
+        // then add tuple to array
+        zipped_arr.push_back(tup);
+
+        idx++;
+    }
+
     return zipped_arr;
 }
 
-
-string NeuralNetwork::zipped_to_string(vector<vector<double> >& zipped) {
+template <typename T, typename T2>
+string NeuralNetwork::zipped_to_string(vector<Tuple<T, T2> >& zipped) {
 
     ostringstream vecOSS;
 
@@ -34,7 +53,7 @@ string NeuralNetwork::zipped_to_string(vector<vector<double> >& zipped) {
 
     vecOSS << '[';
     for (size_t i = 0; i < zipped.size(); i++) {
-        vecOSS << '(' << zipped[i][0] << ", " << zipped[i][1] << ')';
+        vecOSS << '(' << zipped[i].item1 << ", " << zipped[i].item2 << ')';
 
         if (i < last_idx) {
             vecOSS << ", ";

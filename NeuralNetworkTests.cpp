@@ -1,6 +1,7 @@
 
 #include <vector>
 #include <iostream>
+#include <stdexcept>
 
 #include "NeuralNetwork.h"
 
@@ -73,9 +74,9 @@ int main() {
 
     cout << "REACHED!" << endl;
 
-    vector<vector<double> > zipped_vec = nn.zip(vec1, vec2);
+    vector<Tuple<double, double> > zipped_vec = nn.zip<double, double>(vec1, vec2);
 
-    cout << nn.zipped_to_string(zipped_vec) << endl;
+    cout << nn.zipped_to_string<double, double>(zipped_vec) << endl;
 
     Test1();
 

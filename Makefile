@@ -1,9 +1,9 @@
 all:
 
-	g++ NeuralNetwork.cpp NeuralNetworkTests.cpp -o nntests
+	g++ NeuralNetwork.h NeuralNetworkTests.cpp
 
 run:
-
-	./nntests
+	./a.out
+	#./nntests
 
 try: all run
