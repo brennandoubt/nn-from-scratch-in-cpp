@@ -53,7 +53,7 @@ void Test1() {
 
     // now computing neuron layer's output
     vector<double> layer_outputs;
-    //vector<vector<double> > zipped1 = nn1.zip(weights, biases);
+    vector<Tuple<vector<double>, double> > zipped1 = nn1.zip<vector<double>, double>(weights, biases);
 
 }
 

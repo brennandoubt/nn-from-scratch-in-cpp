@@ -32,8 +32,6 @@ vector<Tuple<T, T2> > NeuralNetwork::zip(vector<T>& arr1, vector<T2>& arr2) {
         tup.item1 = arr1[idx]; 
         tup.item2 = arr2[idx];
 
-        cout << tup.item1 << tup.item2 << endl;
-
         // then add tuple to array
         zipped_arr.push_back(tup);
 
