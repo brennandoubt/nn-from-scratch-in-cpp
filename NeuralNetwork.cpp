@@ -27,6 +27,25 @@ vector<Tuple<T, T2> > NeuralNetwork::zip(vector<T>& arr1, vector<T2>& arr2) {
     return zipped_arr;
 }
 
+
+vector<double> NeuralNetwork::dot(vector<vector<double> >& matrix1, vector<vector<double> >& matrix2) {
+
+    vector<double> matrix3(matrix1.size()); // will hold dot product of matrices 1 and 2
+
+    for (size_t i = 0; i < matrix1.size(); i++) {
+
+        matrix3[i] = 0.0;
+
+        for (size_t j = 0; j < matrix1[i].size(); j++) {
+            matrix3[i] += matrix1[i][j] * matrix2[i][j];
+        }
+    }
+
+    return matrix3;
+}
+
+
+
 template <typename T, typename T2>
 string NeuralNetwork::zipped_to_string(vector<Tuple<T, T2> >& zipped) {
 

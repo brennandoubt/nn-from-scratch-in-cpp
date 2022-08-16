@@ -16,6 +16,9 @@ class NeuralNetwork {
         template <typename T, typename T2>
         vector<Tuple<T, T2> > zip(vector<T>& arr1, vector<T2>& arr2);
 
+        // computes dot product of two matrices (represented as vectors storing vectors of doubles) -- assumes matrices are always of same size? -- similar to "unrolling" matrix to make just a 1-dimensional vector?
+        vector<double> dot(vector<vector<double> >& matrix1, vector<vector<double> >& matrix2);
+
         template <typename T, typename T2>
         string zipped_to_string(vector<Tuple<T, T2> >& zipped);
 

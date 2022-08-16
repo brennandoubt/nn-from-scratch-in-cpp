@@ -93,9 +93,44 @@ void Test2() {
 
     NeuralNetwork nn;
 
-    vector<double> v = {2.3, 4.0};
+    // using batches for generalizing data, avoiding overfitting
+
+    // so now adding batches of inputs to network...
+    vector<vector<double> > inputs = {
+        {1, 2, 3, 2.5},
+        {2.0, 5.0, -1.0, 2.0},
+        {-1.5, 2.7, 3.3, -0.8}
+    };
+
+    vector<vector<double> > weights = {
+        {0.2, 0.8, -0.5, 1.0},
+        {0.5, -0.91, 0.26, -0.5},
+        {-0.26, -0.27, 0.17, 0.87}
+    };
+
+    vector<double> biases = {2, 3, 0.5};
+
+    vector<double> layer_outputs;
+
+    layer_outputs = nn.dot(inputs, weights);
+    cout << nn.doubles_vec_to_string(layer_outputs) << endl;
+
+    /* // dear god what have i created here (getting each matrix column from both inputs and weights matrices...)
+    for (Tuple<vector<double>, double> ith_columns : nn.zip<vector<double>, double>(weights, biases)) {
+        // weights and bias info stored in Tuple object
+        vector<double> neuron_weights = ith_columns.item1;
+        double neuron_bias = ith_columns.item2;
+
+        double neuron_output = 0.0;
+
+        // for n_input, weight in zip(inputs, neuron_weights)
+        for (Tuple<vector<double>, double> ith_rows : nn.zip<vector<double>, double>(inputs, neuron_weights)) {
+            
+        }
 
 
+        
+    } */
 }
 
 
@@ -123,6 +158,8 @@ int main() {
     cout << "Zipped doubles...\n" << nn.zipped_to_string<double, double>(zipped_vec) << endl;
 
     Test1();
+
+    Test2();
 
     return 0;
 }
