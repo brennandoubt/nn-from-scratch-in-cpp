@@ -19,12 +19,17 @@ class NeuralNetwork {
         // computes dot product of two matrices (represented as vectors storing vectors of doubles) -- assumes matrices are always of same size?
         vector<vector<double> > matrix_product(vector<vector<double> >& matrix1, vector<vector<double> >& matrix2);
 
+        // returns the original matrix values with the columns changed to rows (needed if two matrices have different row and column dimensions when trying to multiply them together) -- swapping row and column dimensions
+        vector<vector<double> > transpose(const vector<vector<double> >& matrix);
+
         template <typename T, typename T2>
         string zipped_to_string(vector<Tuple<T, T2> >& zipped);
 
         string zipped_matrix_to_string(vector<Tuple<vector<double>, double> >& zipped);
 
         string doubles_vec_to_string(vector<double>& v);
+
+        string matrix_to_string(const vector<vector<double> >& matrix);
     
 };
 

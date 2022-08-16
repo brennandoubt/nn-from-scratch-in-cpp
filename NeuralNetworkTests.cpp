@@ -110,7 +110,15 @@ void Test2() {
 
     vector<double> biases = {2, 3, 0.5};
 
-    vector<vector<double> > layer_outputs;
+    //vector<vector<double> > layer_outputs;
+
+    cout << nn.matrix_to_string(inputs) << endl;
+
+    vector<vector<double> > transposed_matrix = nn.transpose(inputs);
+    //cout << nn.matrix_to_string(transposed_matrix) << endl;
+    for (vector<double> row : transposed_matrix) {
+        cout << nn.doubles_vec_to_string(row) << endl;
+    }
 
     //layer_outputs = nn.matrix_product(inputs, weights);
     //cout << nn.vec_to_string(layer_outputs) << endl;

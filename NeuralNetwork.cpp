@@ -35,11 +35,12 @@ vector<vector<double> > NeuralNetwork::matrix_product(vector<vector<double> >& m
     //double matrix3[matrix1[0].size()][matrix2.size()];
 
     vector<vector<double> > matrix3;
+    vector<double> emptyvec;
 
     
     for (size_t i = 0; i < matrix1[0].size(); i++) {
        //matrix3[i].resize(matrix2.size());
-        matrix3.push_back({0});
+        matrix3.push_back(emptyvec);
 
         for (size_t j = 0; j < matrix2.size(); j++) {
             matrix3[i].push_back(0);
@@ -50,6 +51,50 @@ vector<vector<double> > NeuralNetwork::matrix_product(vector<vector<double> >& m
         }
     }
     return matrix3;
+}
+
+
+vector<vector<double> > NeuralNetwork::transpose(const vector<vector<double> >& matrix) {
+
+    vector<vector<double> > t_matrix;
+    vector<double> emptyvec;
+
+    // for each row value in matrix, take each value and push them into the new matrix's column
+    for (size_t i = 0; i < matrix.size(); i++) {
+        //t_matrix.push_back(emptyvec);
+
+        // pushing each original row value into each column value for new matrix
+        for (size_t j = 0; j < matrix[0].size(); j++) {
+            t_matrix.push_back(emptyvec);
+            t_matrix[j].push_back(matrix[i][j]);
+        }
+    }
+
+    return t_matrix;
+}
+
+
+string NeuralNetwork::matrix_to_string(const vector<vector<double> >& matrix) {
+    ostringstream matrixOSS;
+
+    /* matrixOSS << '[';
+    for (size_t i = 0; i < matrix.size(); i++) {
+
+        for (size_t j = 0; j < matrix[0].size(); j++) {
+            matrixOSS << ' ' << matrix[i][j] << ' ';
+        }
+        if (i != matrix.size() - 1) {
+            matrixOSS << '\n';
+        }
+    }
+    matrixOSS << ']';
+    */
+
+    for (vector<double> row : matrix) {
+        matrixOSS << doubles_vec_to_string(row) << '\n';
+    }
+
+    return matrixOSS.str();
 }
 
 
