@@ -81,7 +81,25 @@ void Test1() {
     }
 
     cout << "NEURON LAYER OUTPUT: " << nn1.doubles_vec_to_string(layer_outputs) << endl; // values match with the Python code's results!
+
+    // Or: the dot product of inputs vector and weights matrix, with the biases then added to their product
+    // returns the neurons' outputs
+
 }
+
+
+
+void Test2() {
+
+    NeuralNetwork nn;
+
+    vector<double> v = {2.3, 4.0};
+
+
+}
+
+
+
 
 
 int main() {
