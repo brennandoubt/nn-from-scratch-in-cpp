@@ -51,11 +51,36 @@ void Test1() {
     biases.push_back(0.5);
 
 
-    // now computing neuron layer's output
+    // now computing neuron layer's output...
     vector<double> layer_outputs;
+
+    // matrix-doubles zip
     vector<Tuple<vector<double>, double> > zipped1 = nn1.zip<vector<double>, double>(weights, biases);
 
     cout << "Zipped a matrix and doubles...\n" << nn1.zipped_matrix_to_string(zipped1) << endl;
+
+    // for neuron weights, neuron bias in zipped1 vector...
+    for (size_t i = 0; i < zipped1.size(); i++) {
+        vector<double> neuron_weights = zipped1[i].item1;
+        double neuron_bias = zipped1[i].item2;
+
+        double neuron_output = 0.0; // output of given neuron
+
+        // doubles-doubles zip
+        vector<Tuple<double, double> > zipped_inputs_weights = nn1.zip<double, double>(inputs, neuron_weights);
+        
+        for (size_t j = 0; j < zipped_inputs_weights.size(); j++) {
+            double n_input = zipped_inputs_weights[j].item1;
+            double weight = zipped_inputs_weights[j].item2;
+
+            neuron_output += n_input*weight; // compute input*weight
+
+        }
+        neuron_output += neuron_bias; // then +bias to get neuron's final output
+        layer_outputs.push_back(neuron_output);
+    }
+
+    cout << "NEURON LAYER OUTPUT: " << nn1.doubles_vec_to_string(layer_outputs) << endl; // values match with the Python code's results!
 }
 
 

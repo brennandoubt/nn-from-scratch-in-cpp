@@ -5,7 +5,6 @@
 
 #include "NeuralNetwork.h"
 
-//#include <typeinfo>
 
 template <typename T, typename T2>
 vector<Tuple<T, T2> > NeuralNetwork::zip(vector<T>& arr1, vector<T2>& arr2) {
@@ -79,6 +78,20 @@ string NeuralNetwork::zipped_matrix_to_string(vector<Tuple<vector<double>, doubl
         }
     }
     vecOSS << ']';
+
+    return vecOSS.str();
+}
+
+
+string NeuralNetwork::doubles_vec_to_string(vector<double>& v) {
+
+    ostringstream vecOSS;
+
+    vecOSS << '[';
+    for (size_t i = 0; i < v.size() - 1; i++) {
+        vecOSS << v[i] << ", ";
+    }
+    vecOSS << v[v.size()-1] << ']'; // adding last value in vector without a comma after it to close vector
 
     return vecOSS.str();
 }
