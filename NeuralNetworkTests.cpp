@@ -110,10 +110,10 @@ void Test2() {
 
     vector<double> biases = {2, 3, 0.5};
 
-    vector<double> layer_outputs;
+    vector<vector<double> > layer_outputs;
 
-    layer_outputs = nn.dot(inputs, weights);
-    cout << nn.doubles_vec_to_string(layer_outputs) << endl;
+    //layer_outputs = nn.matrix_product(inputs, weights);
+    //cout << nn.vec_to_string(layer_outputs) << endl;
 
     /* // dear god what have i created here (getting each matrix column from both inputs and weights matrices...)
     for (Tuple<vector<double>, double> ith_columns : nn.zip<vector<double>, double>(weights, biases)) {

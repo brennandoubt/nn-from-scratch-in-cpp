@@ -28,19 +28,27 @@ vector<Tuple<T, T2> > NeuralNetwork::zip(vector<T>& arr1, vector<T2>& arr2) {
 }
 
 
-vector<double> NeuralNetwork::dot(vector<vector<double> >& matrix1, vector<vector<double> >& matrix2) {
+// matrix multiplication
+vector<vector<double> > NeuralNetwork::matrix_product(vector<vector<double> >& matrix1, vector<vector<double> >& matrix2) {
 
-    vector<double> matrix3(matrix1.size()); // will hold dot product of matrices 1 and 2
+    // declaring a 2-D array (matrix) with dimensions R1 x C2 (rows in matrix 1 x columns in matrix 2)
+    //double matrix3[matrix1[0].size()][matrix2.size()];
 
-    for (size_t i = 0; i < matrix1.size(); i++) {
+    vector<vector<double> > matrix3;
 
-        matrix3[i] = 0.0;
+    
+    for (size_t i = 0; i < matrix1[0].size(); i++) {
+       //matrix3[i].resize(matrix2.size());
+        matrix3.push_back({0});
 
-        for (size_t j = 0; j < matrix1[i].size(); j++) {
-            matrix3[i] += matrix1[i][j] * matrix2[i][j];
+        for (size_t j = 0; j < matrix2.size(); j++) {
+            matrix3[i].push_back(0);
+
+            for (size_t k = 0; matrix2[0].size(); k++) {
+                matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
         }
     }
-
     return matrix3;
 }
 
