@@ -34,20 +34,22 @@ vector<vector<double> > NeuralNetwork::matrix_product(vector<vector<double> >& m
     // declaring a 2-D array (matrix) with dimensions R1 x C2 (rows in matrix 1 x columns in matrix 2)
     //double matrix3[matrix1[0].size()][matrix2.size()];
 
-    vector<vector<double> > matrix3;
-    vector<double> emptyvec;
+    vector<vector<double> > matrix3{matrix1.size()};
+    //vector<double> emptyvec;
 
     
-    for (size_t i = 0; i < matrix1[0].size(); i++) {
+    for (size_t i = 0; i < matrix1.size(); i++) {
        //matrix3[i].resize(matrix2.size());
-        matrix3.push_back(emptyvec);
+        //matrix3.push_back(emptyvec);
+        //matrix3[i].resize(0);
 
-        for (size_t j = 0; j < matrix2.size(); j++) {
-            matrix3[i].push_back(0);
-
-            for (size_t k = 0; matrix2[0].size(); k++) {
-                matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
+        for (size_t j = 0; j < matrix2[0].size(); j++) {
+            
+            double result = 0;
+            for (size_t k = 0; k < matrix2.size(); k++) {
+                result += matrix1[i][k] * matrix2[k][j];
             }
+            matrix3[i].push_back(result);
         }
     }
     return matrix3;
@@ -60,7 +62,7 @@ vector<vector<double> > NeuralNetwork::transpose(const vector<vector<double> >& 
 
     // for each row value in matrix, take each value and push them into the new matrix's column
     for (size_t i = 0; i < matrix.size(); i++) {
-        // pushing each original row value into each column value for new matrix
+        // pushing each original row value into each column space for new matrix
         for (size_t j = 0; j < matrix[0].size(); j++) {
             //t_matrix.push_back(emptyvec);
             t_matrix[j].push_back(matrix[i][j]);

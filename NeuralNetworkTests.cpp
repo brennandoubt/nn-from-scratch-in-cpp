@@ -57,7 +57,7 @@ void Test1() {
     // matrix-doubles zip
     vector<Tuple<vector<double>, double> > zipped1 = nn1.zip<vector<double>, double>(weights, biases);
 
-    cout << "Zipped a matrix and doubles...\n" << nn1.zipped_matrix_to_string(zipped1) << endl;
+    //cout << "Zipped a matrix and doubles...\n" << nn1.zipped_matrix_to_string(zipped1) << endl;
 
     // for neuron weights, neuron bias in zipped1 vector...
     for (size_t i = 0; i < zipped1.size(); i++) {
@@ -80,7 +80,7 @@ void Test1() {
         layer_outputs.push_back(neuron_output);
     }
 
-    cout << "NEURON LAYER OUTPUT: " << nn1.doubles_vec_to_string(layer_outputs) << endl; // values match with the Python code's results!
+    cout << "TEST 1, NEURON LAYER OUTPUT: " << nn1.doubles_vec_to_string(layer_outputs) << endl; // values match with the Python code's results!
 
     // Or: the dot product of inputs vector and weights matrix, with the biases then added to their product
     // returns the neurons' outputs
@@ -112,10 +112,14 @@ void Test2() {
 
     //vector<vector<double> > layer_outputs;
 
-    cout << nn.matrix_to_string(inputs) << endl;
+    cout << "\nWEIGHTS...\n" << nn.matrix_to_string(weights) << endl;
 
-    vector<vector<double> > transposed_matrix = nn.transpose(inputs);
-    cout << nn.matrix_to_string(transposed_matrix) << endl;
+    // transposing matrix so we can do matrix multiplication with it
+    vector<vector<double> > transposed_matrix = nn.transpose(weights);
+    cout << "\nTRANSPOSED WEIGHTS...\n" << nn.matrix_to_string(transposed_matrix) << endl;
+
+    vector<vector<double> > product = nn.matrix_product(inputs, transposed_matrix);
+    cout << "\nMATRIX PRODUCT (INPUTS, WEIGHTS)...\n" << nn.matrix_to_string(product) << endl;
 }
 
 
