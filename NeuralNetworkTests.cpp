@@ -115,58 +115,13 @@ void Test2() {
     cout << nn.matrix_to_string(inputs) << endl;
 
     vector<vector<double> > transposed_matrix = nn.transpose(inputs);
-    //cout << nn.matrix_to_string(transposed_matrix) << endl;
-    for (vector<double> row : transposed_matrix) {
-        cout << nn.doubles_vec_to_string(row) << endl;
-    }
-
-    //layer_outputs = nn.matrix_product(inputs, weights);
-    //cout << nn.vec_to_string(layer_outputs) << endl;
-
-    /* // dear god what have i created here (getting each matrix column from both inputs and weights matrices...)
-    for (Tuple<vector<double>, double> ith_columns : nn.zip<vector<double>, double>(weights, biases)) {
-        // weights and bias info stored in Tuple object
-        vector<double> neuron_weights = ith_columns.item1;
-        double neuron_bias = ith_columns.item2;
-
-        double neuron_output = 0.0;
-
-        // for n_input, weight in zip(inputs, neuron_weights)
-        for (Tuple<vector<double>, double> ith_rows : nn.zip<vector<double>, double>(inputs, neuron_weights)) {
-            
-        }
-
-
-        
-    } */
+    cout << nn.matrix_to_string(transposed_matrix) << endl;
 }
-
-
-
 
 
 int main() {
 
-    NeuralNetwork nn;
-
-    vector<double> vec1;
-    vec1.push_back(2.3);
-    vec1.push_back(53.2);
-    vec1.push_back(-2.7);
-
-    vector<double> vec2;
-    vec2.push_back(1.4);
-    vec2.push_back(3.9);
-    vec2.push_back(8.1);
-
-    cout << "REACHED!" << endl;
-
-    vector<Tuple<double, double> > zipped_vec = nn.zip<double, double>(vec1, vec2);
-
-    cout << "Zipped doubles...\n" << nn.zipped_to_string<double, double>(zipped_vec) << endl;
-
     Test1();
-
     Test2();
 
     return 0;
