@@ -73,6 +73,18 @@ vector<vector<double> > NeuralNetwork::transpose(const vector<vector<double> >& 
 }
 
 
+vector<vector<double> > NeuralNetwork::add_to_matrix(vector<vector<double> >& matrix, vector<double>& vector) {
+
+    // add each vector[i] value to each matrix[j][i] value
+    for (size_t j = 0; j < matrix.size(); j++) {
+        for (size_t i = 0; i < vector.size(); i++) {
+            matrix[j][i] += vector[i];
+        }
+    }
+    return matrix;
+}
+
+
 string NeuralNetwork::matrix_to_string(const vector<vector<double> >& matrix) {
     ostringstream matrixOSS;
 

@@ -22,6 +22,9 @@ class NeuralNetwork {
         // returns the original matrix values with the columns changed to rows (needed if two matrices have different row and column dimensions when trying to multiply them together) -- swapping row and column dimensions
         vector<vector<double> > transpose(const vector<vector<double> >& matrix);
 
+        // adding a vector to a matrix and returning their sum
+        vector<vector<double> > add_to_matrix(vector<vector<double> >& matrix, vector<double>& vector);
+
         template <typename T, typename T2>
         string zipped_to_string(vector<Tuple<T, T2> >& zipped);
 

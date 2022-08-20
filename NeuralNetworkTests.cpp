@@ -120,6 +120,9 @@ void Test2() {
 
     vector<vector<double> > product = nn.matrix_product(inputs, transposed_matrix);
     cout << "\nMATRIX PRODUCT (INPUTS, WEIGHTS)...\n" << nn.matrix_to_string(product) << endl;
+
+    vector<vector<double> > output = nn.add_to_matrix(product, biases);
+    cout << "MATRIX OUTPUT (PRODUCT + BIASES)...\n" << nn.matrix_to_string(output) << endl;
 }
 
 
