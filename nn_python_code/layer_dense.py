@@ -16,6 +16,11 @@ class Layer_Dense:
     def forward(self, inputs):
         self.output = numpy.dot(inputs, self.weights) + self.biases
 
+class Activation_ReLU:
+    def forward(self, inputs):
+        self.output = numpy.maximum(0, inputs)
+
+
 # trying to get weights to initialize to random values between -0.1, +0.1
 #print(0.10 * numpy.random.randn(4, 3))
 
@@ -33,4 +38,4 @@ print(layer1.output)
 
 # neurons' outputs in layer 1 become inputs for layer 2
 layer2.forward(layer1.output)
-print(layer2.output)
+print(layer2.output)    

@@ -72,8 +72,10 @@ class Activation_ReLU {
             for (size_t i = 0; i < inputs.num_rows(); i++) {
                 for (size_t j = 0; j < inputs.num_cols(); j++) {
                     if (inputs.array[i][j] > 0) {
-                        activation_results.array[i][j] = 1.0; // activate neuron if its output is greater than 0
+                        // OR: keep neuron output the same if greater than 0
+                        //activation_results.array[i][j] = 1.0; // activate neuron if its output is greater than 0
                     } else {
+                        // OR: set all other less-than-zero neuron outputs to 0.0 to have them not activated
                         activation_results.array[i][j] = 0.0; // don't activate all other neurons
                     }
                 }
