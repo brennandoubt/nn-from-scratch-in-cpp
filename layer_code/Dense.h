@@ -14,6 +14,8 @@ class Dense {
         Tensor forward(Tensor& inputs);
 
         string to_string();
+
+        Tensor output;
     
     private:
         Tensor weights;

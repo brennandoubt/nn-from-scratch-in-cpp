@@ -21,9 +21,11 @@ class Layer_Dense:
 
 # 4 inputs, 5 neurons
 layer1 = Layer_Dense(4, 5)
+print(layer1.weights)
 
 # then 5 inputs, 2 neurons
 layer2 = Layer_Dense(5, 2)
+print(layer2.weights)
 
 
 layer1.forward(X)
