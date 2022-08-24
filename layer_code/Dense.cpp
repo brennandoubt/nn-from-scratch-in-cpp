@@ -31,21 +31,12 @@ Tensor gen_python_example_weights52() {
 
 // constructor (n_inputs, n_neurons)
 Dense::Dense(unsigned int n_inputs, unsigned int n_neurons) {
-    // example weights from numpy.randn() call in python example
-    //Tensor ex_weights = gen_python_example_weights();
-
 
     vector<vector<double> > tmp{n_inputs};
     for (size_t i = 0; i < n_inputs; i++) {
         tmp[i].resize(n_neurons);
-        //cout << "Row size: " << tmp[i].size() << endl;
         for (size_t j = 0; j < n_neurons; j++) {
             tmp[i][j] = 0.10 * gen_rand_norm();
-            //cout << tmp[i][j] << endl;
-            //cout << ex_weights.shape() << " , " << Tensor(tmp).shape() << i << ',' << j << endl;
-            //cout << Tensor(tmp).to_string() << endl;
-            //cout << tmp[i][j];
-            //tmp[i][j] = ex_weights.array[i][j];
         }
     }
     this->weights = Tensor(tmp);
@@ -82,12 +73,16 @@ int main() {
 
     Dense layer1 = Dense(4, 5);
     Dense layer2 = Dense(5, 2);
+    Dense layer3 = Dense(2, 1);
 
     Tensor layer1_outputs = layer1.forward(X);
     cout << layer1_outputs.to_string() << endl;
     
     Tensor layer2_outputs = layer2.forward(layer1_outputs);
     cout << layer2.output.to_string() << endl;
+
+    Tensor layer3_outputs = layer3.forward(layer2_outputs);
+    cout << layer3.output.to_string() << endl;
 
     return 0;
 }
