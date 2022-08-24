@@ -61,10 +61,69 @@ string Dense::to_string() {
     return layerOSS.str();
 }
 
+class Activation_ReLU {
+
+    public:
+        Tensor output;
+
+        Tensor forward(Tensor& inputs) {
+            Tensor activation_results = inputs;
+
+            for (size_t i = 0; i < inputs.num_rows(); i++) {
+                for (size_t j = 0; j < inputs.num_cols(); j++) {
+                    if (inputs.array[i][j] > 0) {
+                        activation_results.array[i][j] = 1.0; // activate neuron if its output is greater than 0
+                    } else {
+                        activation_results.array[i][j] = 0.0; // don't activate all other neurons
+                    }
+                }
+            }
+            this->output = activation_results;
+            return activation_results;
+        };
+};
+
+
+void test_activation_relu() {
+    cout << "TESTING RELU ACTIVATION LAYER...\n";
+
+    vector<vector<double> > ex_inputs = {
+        {1, 2, 3, 2.5},
+        {2.0, 5.0, -1.0, 2.0},
+        {-1.5, 2.7, 3.3, -0.8}
+    };
+    Tensor X = Tensor(ex_inputs);
+
+    Dense layer1 = Dense(4, 5);
+    Activation_ReLU activation1 = Activation_ReLU();
+
+    layer1.forward(X);
+    cout << "Layer 1 output...\n" << layer1.output.to_string() << endl;
+
+    activation1.forward(layer1.output);
+    cout << "Activation 1 output...\n" << activation1.output.to_string() << endl;
+
+    Dense layer2 = Dense(5, 2);
+    Activation_ReLU activation2 = Activation_ReLU();
+
+    layer2.forward(activation1.output);
+    cout << "Layer 2 output...\n" << layer2.output.to_string() << endl;
+
+    activation2.forward(layer2.output);
+    cout << "Activation 2 output...\n" << activation2.output.to_string() << endl;
+
+
+
+
+    cout << "ENDING TESTING...\n";
+};
+
+
+
 
 int main() {
 
-    vector<vector<double> > inputs = {
+    /* vector<vector<double> > inputs = {
         {1, 2, 3, 2.5},
         {2.0, 5.0, -1.0, 2.0},
         {-1.5, 2.7, 3.3, -0.8}
@@ -82,7 +141,9 @@ int main() {
     cout << layer2.output.to_string() << endl;
 
     Tensor layer3_outputs = layer3.forward(layer2_outputs);
-    cout << layer3.output.to_string() << endl;
+    cout << layer3.output.to_string() << endl; */
+
+    test_activation_relu();
 
     return 0;
 }
