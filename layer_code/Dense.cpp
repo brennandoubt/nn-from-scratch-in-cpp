@@ -2,10 +2,11 @@
 
 
 std::random_device rd; // getting random value from hardware
-std::mt19937 gen(0); // random seed generation
-std::normal_distribution<double> distr(-0.1, 0.1);
+//std::mt19937 gen(0); // random seed generation
+std::default_random_engine generator(0);
+std::normal_distribution<double> norm_distr(0.0, 1.0);
 double gen_rand_norm() {
-    return distr(gen);
+    return norm_distr(generator);
 };
 
 // matrix of weights generated from numpy.randn() command in python program example
@@ -34,25 +35,26 @@ Dense::Dense(unsigned int n_inputs, unsigned int n_neurons) {
     //Tensor ex_weights = gen_python_example_weights();
 
 
-    /* vector<vector<double> > tmp{n_inputs};
+    vector<vector<double> > tmp{n_inputs};
     for (size_t i = 0; i < n_inputs; i++) {
         tmp[i].resize(n_neurons);
         //cout << "Row size: " << tmp[i].size() << endl;
         for (size_t j = 0; j < n_neurons; j++) {
-            tmp[i][j] = gen_rand_norm();
+            tmp[i][j] = 0.10 * gen_rand_norm();
+            //cout << tmp[i][j] << endl;
             //cout << ex_weights.shape() << " , " << Tensor(tmp).shape() << i << ',' << j << endl;
             //cout << Tensor(tmp).to_string() << endl;
             //cout << tmp[i][j];
             //tmp[i][j] = ex_weights.array[i][j];
         }
-    } */
-    //this->weights = Tensor(tmp);
-    if (n_inputs == 4 && n_neurons == 5) {
+    }
+    this->weights = Tensor(tmp);
+    /* if (n_inputs == 4 && n_neurons == 5) {
         this->weights = gen_python_example_weights45(); // needs to only generate example weights in correct shape (n_inputs, n_neurons)
     }
     else if (n_inputs == 5 && n_neurons == 2) {
         this->weights = gen_python_example_weights52();
-    }
+    } */
 };
 
 Tensor Dense::forward(Tensor& inputs) {
